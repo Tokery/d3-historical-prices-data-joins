@@ -96,9 +96,7 @@ class HistoricalPriceChart {
       //const end = index + numberOfPricePoints;
       const end = index;
       const subset = total.slice(start, end + 1);
-      const sum = subset.reduce((a, b) => {
-        return a + b['close'];
-      }, 0);
+      const sum = subset.reduce((runSum, element) => runSum + element['close'], 0);
 
       return {
         date: row['date'],
@@ -113,9 +111,7 @@ class HistoricalPriceChart {
       const start = Math.max(0, index - numberOfPricePoints);
       const end = index;
       const subset = total.slice(start, end + 1);
-      const sum = subset.reduce((a, b) => {
-        return a + b['close'];
-      }, 0);
+      const sum = subset.reduce((runSum, element) => runSum + element['close'], 0);
 
       const sumSquaredDifference = subset.reduce((a, b) => {
         const average = sum / subset.length;
